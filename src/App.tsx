@@ -197,7 +197,12 @@ export default function App() {
         try {
           const json = JSON.parse(text);
           errMsg = json.error || json.details || errMsg;
-        } catch (e) {}
+        } catch (e) {
+          const cleanText = text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+          if (cleanText) {
+            errMsg = `Error ${res.status}: ${cleanText.slice(0, 180)}`;
+          }
+        }
         throw new Error(errMsg);
       }
 
