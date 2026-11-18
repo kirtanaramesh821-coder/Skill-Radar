@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+  --font-rounded: "Comfortaa", cursive;
+
+  --color-dark-canvas: #070b16;
+  --color-dark-surface: #10172c;
+  --color-dark-deep: #090e1d;
+
+  --color-neon-pink: #ff8fab;
+  --color-neon-purple: #c4b5fd;
+  --color-neon-cyan: #72efdd;
+  --color-neon-peach: #ffb58a;
+  --color-neon-yellow: #fde68a;
+  --color-neon-blue: #7dd3fc;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-canvas text-slate-100 font-sans selection:bg-neon-pink/30 selection:text-white antialiased;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-dark-surface/85 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50 rounded-3xl;
+  }
+  
+  .btn-pastel {
+    @apply px-6 py-3 rounded-2xl font-bold transition-all duration-200 active:scale-95 shadow-lg hover:brightness-105 disabled:opacity-40 disabled:scale-100 cursor-pointer;
+  }
+  
+  .input-pastel {
+    @apply bg-dark-deep/90 text-slate-100 placeholder:text-slate-500 border border-white/10 focus:border-neon-cyan/70 focus:ring-2 focus:ring-neon-cyan/20 rounded-2xl p-4 transition-all outline-none;
+  }
+}
+
+.doodle-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.doodle-spin {
+  animation: spin-slow 12s linear infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #070b16;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-neon-purple/25 rounded-full hover:bg-neon-purple/45;
+}
